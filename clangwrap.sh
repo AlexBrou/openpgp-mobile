@@ -18,7 +18,7 @@ elif [ "$GOARCH" == "386" ]; then
 fi
 
 if [ "$SDK" = "iphoneos" ]; then
- EXTRA_ARGS="-fembed-bitcode -miphoneos-version-min==$IOS_TARGET"
+ EXTRA_ARGS="-fembed-bitcode"
  TARGET="$CARCH-apple-ios$IOS_TARGET"
 elif [ "$SDK" = "iphonesimulator" ]; then
  EXTRA_ARGS="-fembed-bitcode -mios-simulator-version-min=$IOS_TARGET"
