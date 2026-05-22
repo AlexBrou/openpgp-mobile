@@ -5,6 +5,7 @@ import (
 	"errors"
 	"fmt"
 	"io"
+	"io/ioutil"
 	"os"
 	"strings"
 
@@ -88,6 +89,10 @@ func (o *FastOpenPGP) verifyDataBytes(signedData io.Reader, publicKey string, sh
 
 	if !md.IsSigned {
 		return false, errors.New("message was not signed")
+	}
+
+	if _, err := ioutil.ReadAll(md.UnverifiedBody); err != nil {
+		return false, fmt.Errorf("signature verification failed: %w", err)
 	}
 
 	if md.SignatureError != nil {
